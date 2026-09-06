@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أنمّي لغتي والمهارات | عُذْرًا يا جَدِّي</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#294b6a;--pink:#f8dbe8;--lav:#e9def8;--mint:#dff4e8;--yellow:#fff1bf;--blue:#dceeff;--green:#318665;--red:#c65062}
+body{margin:0;background:linear-gradient(#fffafd,#f7fbff);font-family:Tahoma,Arial,sans-serif;color:var(--navy)}
+.wrap{max-width:1180px;margin:auto;padding:18px}
+.banner{width:100%;display:block;border-radius:28px;box-shadow:0 12px 30px #5d54721c}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0;flex-wrap:wrap}
+.home,.reset{border:0;border-radius:16px;padding:11px 18px;font-size:17px;cursor:pointer}
+.home{background:#e4f1ff;color:#315d84}.reset{background:#ffe3ec;color:#86485c}
+.stations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 22px}
+.station{border:0;border-radius:22px;padding:17px 10px;font-size:18px;font-weight:800;color:#3d5270;cursor:pointer;box-shadow:0 6px 18px #5b54731a}
+.station:nth-child(1){background:var(--pink)}.station:nth-child(2){background:var(--mint)}
+.station:nth-child(3){background:var(--yellow)}.station:nth-child(4){background:var(--lav)}
+.station.active{outline:4px solid white;box-shadow:0 0 0 3px #7c8fc5,0 8px 20px #5b547325}
+.panel{display:none;background:white;border-radius:28px;padding:25px;box-shadow:0 12px 30px #5d547218}
+.panel.active{display:block}
+h2{text-align:center;margin:0 0 8px;font-size:30px}.hint{text-align:center;color:#746e84;margin-bottom:22px}
+.activity{max-width:850px;margin:0 auto 18px;padding:20px;border:2px solid #eee6f3;border-radius:22px;background:#fff}
+.prompt{text-align:center;font-size:25px;font-weight:800;line-height:1.8;margin-bottom:14px}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.choice{border:2px solid #e5ddef;background:#fff;border-radius:17px;padding:14px;font-size:21px;cursor:pointer;color:#334f6b}
+.choice.ok{background:#e4f6ec;border-color:#76bf99;color:#226b4c}.choice.bad{background:#fff0f2;border-color:#df98a4;color:#963c4a}
+.feedback{text-align:center;min-height:35px;font-size:19px;font-weight:800;margin-top:10px}
+.wordmap{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:800px;margin:auto}
+.mapcard{padding:17px;border-radius:18px;background:#f8f5fc;border:2px solid #e5dcef}
+.mapcard strong{display:block;margin-bottom:9px}
+.mapopts{display:flex;gap:8px;flex-wrap:wrap}.mapopts button{border:1px solid #d9cce8;background:#fff;border-radius:13px;padding:9px 12px;cursor:pointer;font-size:17px}
+.readline{font-size:27px;text-align:center;line-height:2.1;background:#fffaf0;border-radius:18px;padding:15px}
+.mark{color:#dc654e;font-weight:900}.syllables{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:15px}
+.syl{background:#e8f4ff;border:2px solid #b9daf5;border-radius:14px;padding:10px 17px;font-size:22px}
+.done{display:none;text-align:center;padding:25px;background:#f0fbf5;border-radius:24px;margin-top:18px}
+.done.show{display:block}.done b{font-size:28px;color:#318665}
+@media(max-width:760px){.stations{grid-template-columns:1fr 1fr}.choices,.wordmap{grid-template-columns:1fr}.prompt{font-size:21px}.wrap{padding:9px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<img class="banner" src="assets/language-skills-banner.png" alt="أنمّي لغتي والمهارات">
+<div class="nav">
+<button class="home" onclick="location.href='../index.html'">⌂ الرئيسية</button>
+<button class="reset" onclick="location.reload()">↻ إعادة الأنشطة</button>
+</div>
+
+<div class="stations">
+<button class="station active" onclick="showPanel(0)">١. معنى الكلمة</button>
+<button class="station" onclick="showPanel(1)">٢. الكلمة وضدها</button>
+<button class="station" onclick="showPanel(2)">٣. خريطة «غَضِبَ»</button>
+<button class="station" onclick="showPanel(3)">٤. الأداء القرائي</button>
+</div>
+
+<section class="panel active">
+<h2>معنى الكلمة</h2><div class="hint">اختاري المعنى الصحيح للكلمة الملوّنة.</div>
+<div class="activity"><div class="prompt">إِنَّ الْجَدَّ <span class="mark">عَطُوفٌ</span> حَنُونٌ.</div>
+<div class="choices"><button class="choice" onclick="answer(this,true)">رَحِيمٌ</button><button class="choice" onclick="answer(this,false)">شَدِيدٌ</button></div><div class="feedback"></div></div>
+<div class="activity"><div class="prompt">عَلَيْكَ أَنْ <span class="mark">تَعْتَذِرَ</span> إِلَى جَدِّكَ.</div>
+<div class="choices"><button class="choice" onclick="answer(this,false)">تَطْلُبَ الشُّكْرَ</button><button class="choice" onclick="answer(this,true)">تَطْلُبَ السَّمَاحَ</button></div><div class="feedback"></div></div>
+</section>
+
+<section class="panel">
+<h2>الكلمة وضدها</h2><div class="hint">اختاري الضد الصحيح.</div>
+<div class="activity"><div class="prompt">ضد كلمة «طَاعَة»</div>
+<div class="choices"><button class="choice" onclick="answer(this,true)">امْتِنَاع</button><button class="choice" onclick="answer(this,false)">مُوَافَقَة</button></div><div class="feedback"></div></div>
+<div class="activity"><div class="prompt">ضد كلمة «صَحِبَ»</div>
+<div class="choices"><button class="choice" onclick="answer(this,false)">رَافَقَ</button><button class="choice" onclick="answer(this,true)">تَرَكَ</button></div><div class="feedback"></div></div>
+</section>
+
+<section class="panel">
+<h2>خريطة المفردة: غَضِبَ</h2><div class="hint">أكملي خريطة المفردة باختيار الإجابة المناسبة.</div>
+<div class="wordmap">
+<div class="mapcard"><strong>ضِدُّها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">رَضِيَ</button><button onclick="mapAnswer(this,false)">حَزِنَ</button></div></div>
+<div class="mapcard"><strong>نَوْعُها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">فِعْلٌ</button><button onclick="mapAnswer(this,false)">اسْمٌ</button></div></div>
+<div class="mapcard"><strong>مُرادِفُها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">سَخِطَ</button><button onclick="mapAnswer(this,false)">فَرِحَ</button></div></div>
+<div class="mapcard"><strong>في جملة:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">غَضِبَ جَدِّي مِنَ الصَّوْتِ الْمُرْتَفِعِ.</button><button onclick="mapAnswer(this,false)">غَضِبَ الْكِتَابُ.</button></div></div>
+</div>
+<div class="feedback" id="mapfb"></div>
+</section>
+
+<section class="panel">
+<h2>الأداء القرائي</h2><div class="hint">اقرئي ولاحظي الكلمات الملوّنة، ثم شاهدي تحليل الكلمات.</div>
+<div class="activity">
+<div class="readline">إِنَّ الْجَدَّ <span class="mark">عَطُوفٌ</span> حَنُونٌ.<br>عَلَيْكَ أَنْ <span class="mark">تَعْتَذِرَ</span> إِلَى جَدِّكَ.</div>
+</div>
+<div class="activity"><div class="prompt">تحليل كلمة «الْمَدْرَسَةِ»</div><div class="syllables"><span class="syl">الْـ</span><span class="syl">مَدْ</span><span class="syl">رَ</span><span class="syl">سَـ</span><span class="syl">ةِ</span></div></div>
+<div class="activity"><div class="prompt">تحليل كلمة «مَكْتَبَةٍ»</div><div class="syllables"><span class="syl">مَكْ</span><span class="syl">تَـ</span><span class="syl">بَـ</span><span class="syl">ةٍ</span></div></div>
+<div class="done show"><b>أحسنتِ 🌷</b><br>أكملتِ محطات أنمّي لغتي والمهارات.</div>
+</section>
+</div>
+
+<audio id="cheer" src="assets/kids-cheering.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="assets/wrong.wav" preload="auto"></audio>
+<script>
+function cheer(){const a=document.getElementById('cheer');a.currentTime=0;a.play().catch(()=>{})}
+function wrongSound(){const a=document.getElementById('wrongSound');a.currentTime=0;a.play().catch(()=>{})}
+function showPanel(n){
+ document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+ document.querySelectorAll('.station').forEach((b,i)=>b.classList.toggle('active',i===n));
+ window.scrollTo({top:document.querySelector('.stations').offsetTop-10,behavior:'smooth'});
+}
+function answer(btn,ok){
+ const box=btn.closest('.activity'), fb=box.querySelector('.feedback');
+ if(ok){btn.classList.add('ok');box.querySelectorAll('.choice').forEach(x=>x.disabled=true);fb.textContent='أحسنتِ! إجابة صحيحة 👏';fb.style.color='#318665';cheer();}
+ else{btn.classList.add('bad');btn.disabled=true;fb.textContent='حاولي مرة أخرى 🌷';fb.style.color='#c65062';wrongSound();}
+}
+function mapAnswer(btn,ok){
+ if(ok){btn.style.background='#e4f6ec';btn.style.borderColor='#76bf99';btn.disabled=true;document.getElementById('mapfb').textContent='أحسنتِ 👏';document.getElementById('mapfb').style.color='#318665';cheer();}
+ else{btn.style.background='#fff0f2';btn.disabled=true;document.getElementById('mapfb').textContent='حاولي مرة أخرى 🌷';document.getElementById('mapfb').style.color='#c65062';wrongSound();}
+}
+</script>
+</body></html>
