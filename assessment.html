@@ -1,0 +1,45 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>التقويم الختامي</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(#fffafd,#f5fbff);color:#294b6a}
+.wrap{max-width:1180px;margin:auto;padding:16px}.banner{width:100%;border-radius:28px;display:block;box-shadow:0 12px 30px #5d54721c}
+.top{display:flex;justify-content:space-between;align-items:center;margin:16px 0;gap:10px}.btn{border:0;border-radius:16px;padding:11px 18px;font-size:17px;cursor:pointer}
+.home{background:#e3f1ff;color:#315d84}.reset{background:#ffe5ed;color:#86485c}
+.bar{height:14px;background:#eee9f2;border-radius:20px;overflow:hidden;margin:14px 0 22px}.fill{height:100%;width:16.66%;background:linear-gradient(90deg,#f4a8c5,#a9d8f5);transition:.35s}
+.card{background:white;border-radius:28px;padding:28px;box-shadow:0 12px 30px #5d547218;max-width:900px;margin:auto}
+.count{text-align:center;color:#806b94;font-weight:bold}.q{text-align:center;font-size:26px;font-weight:800;line-height:1.8;margin:13px 0 20px}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.choice{border:2px solid #e2dbea;background:#fff;border-radius:18px;padding:15px;font-size:20px;color:#34516e;cursor:pointer;min-height:65px}
+.choice.good{background:#e4f6ec;border-color:#76bf99;color:#226b4c}.choice.bad{background:#fff0f2;border-color:#df98a4;color:#963c4a}
+.feedback{text-align:center;min-height:40px;font-size:19px;font-weight:bold;margin-top:12px}.next{display:none;margin:10px auto 0;border:0;border-radius:17px;padding:12px 26px;background:#71569a;color:white;font-size:18px;cursor:pointer}.next.show{display:block}
+.result{display:none;max-width:900px;margin:auto;text-align:center;background:linear-gradient(135deg,#fff7cd,#ffe3ef,#e5f4ff);border-radius:30px;padding:38px 20px;box-shadow:0 12px 30px #5d547218}
+.result.show{display:block}.star{font-size:75px}.result h2{font-size:34px;color:#6a4b8c}.score{font-size:28px;font-weight:bold;margin:14px}.msg{font-size:20px;line-height:1.8}
+@media(max-width:700px){.choices{grid-template-columns:1fr}.q{font-size:21px}.wrap{padding:8px}}
+</style></head><body><div class="wrap">
+<img class="banner" src="final-banner.png" alt="التقويم الختامي">
+<div class="top"><button class="btn home" onclick="location.href='../index.html'">⌂ الرئيسية</button><button class="btn reset" onclick="location.reload()">↻ إعادة التقويم</button></div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<section class="card" id="card"><div class="count" id="count"></div><div class="q" id="q"></div><div class="choices" id="choices"></div><div class="feedback" id="fb"></div><button class="next" id="next" onclick="nextQ()">التالي ←</button></section>
+<section class="result" id="result"><div class="star">🌟🏆🌟</div><h2>أحسنتِ!</h2><div class="score" id="score"></div><div class="msg" id="msg"></div><button class="btn reset" onclick="location.reload()">إعادة التقويم</button></section>
+<audio id="cheer" src="kids-cheering.mp3" preload="auto"></audio><audio id="wrong" src="wrong.wav" preload="auto"></audio>
+<script>
+const qs=[
+{q:'إلى أين اصطحب المعلّم التلاميذ؟',o:['إلى مكتبة المدرسة','إلى الملعب','إلى المنزل','إلى الحديقة'],a:0},
+{q:'لماذا غضب الجد من فواز؟',o:['لأنه لم يُخفِّض صوت التلفاز','لأنه ذهب إلى المكتبة','لأنه قرأ كتابًا','لأنه اعتذر'],a:0},
+{q:'بمَ نصح المعلّم فوازًا؟',o:['أن يعتذر إلى جدّه ويطلب السماح','أن يرفع صوت التلفاز','أن يترك المدرسة','أن يتجاهل جدّه'],a:0},
+{q:'ما معنى كلمة «عَطُوفٌ»؟',o:['رَحِيمٌ','شَدِيدٌ','غَاضِبٌ','بَعِيدٌ'],a:0},
+{q:'ما ضد كلمة «طَاعَة»؟',o:['امْتِنَاع','مُوَافَقَة','حَنَان','سَمَاح'],a:0},
+{q:'أيُّ جملةٍ تؤكّد الكلام باستخدام «إنَّ»؟',o:['إِنَّ الْجَدَّ عَطُوفٌ.','الْجَدُّ عَطُوفٌ.','هَلِ الْجَدُّ عَطُوفٌ؟','يَا جَدِّي!'],a:0}
+];
+let i=0,score=0;
+function sound(id){let a=document.getElementById(id);a.pause();a.currentTime=0;a.play().catch(()=>{})}
+function render(){let x=qs[i];document.getElementById('count').textContent='السؤال '+(i+1)+' من '+qs.length;document.getElementById('q').textContent=x.q;
+let c=document.getElementById('choices');c.innerHTML='';x.o.forEach((t,j)=>{let b=document.createElement('button');b.className='choice';b.textContent=t;b.onclick=()=>answer(b,j===x.a);c.appendChild(b)});
+document.getElementById('fb').textContent='';document.getElementById('next').classList.remove('show');document.getElementById('fill').style.width=((i+1)/qs.length*100)+'%'}
+function answer(b,ok){let f=document.getElementById('fb');if(ok){score++;b.classList.add('good');document.querySelectorAll('.choice').forEach(x=>x.disabled=true);f.textContent='أحسنتِ! إجابة صحيحة 👏';f.style.color='#318665';sound('cheer');document.getElementById('next').classList.add('show')}
+else{b.classList.add('bad');b.disabled=true;f.textContent='حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}}
+function nextQ(){i++;if(i<qs.length)render();else finish()}
+function finish(){document.getElementById('card').style.display='none';document.getElementById('result').classList.add('show');document.getElementById('fill').style.width='100%';
+document.getElementById('score').textContent='أكملتِ '+qs.length+' من '+qs.length+' أسئلة بنجاح';
+document.getElementById('msg').innerHTML='رائع! أتممتِ التقويم الختامي لدرس<br><b>«عُذْرًا يا جَدِّي»</b> 🌷';setTimeout(()=>sound('cheer'),250)}
+render();
+</script></div></body></html>
