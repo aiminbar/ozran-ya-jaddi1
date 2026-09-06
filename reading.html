@@ -24,7 +24,7 @@
 .banner-home-wrap{position:relative;width:100%;display:block}
 .banner-home-wrap .home-hotspot{
 position:absolute;left:3.0%;top:9%;width:9.5%;height:25%;
-border:0;background:transparent;cursor:pointer;z-index:20;
+display:block;border:0;background:transparent;cursor:pointer;z-index:50;touch-action:manipulation;
 -webkit-tap-highlight-color:transparent;
 }
 .banner-home-wrap .home-hotspot:focus{outline:3px solid rgba(70,140,210,.35);outline-offset:2px;border-radius:50%}
@@ -33,7 +33,7 @@ border:0;background:transparent;cursor:pointer;z-index:20;
 </head><body>
 <div class="page">
 <div class="banner">
-<div class="banner-home-wrap"><img src="reading-banner.png" alt="شريط القراءة والاستماع"><button class="home-hotspot" type="button" aria-label="العودة إلى الرئيسية" title="الرئيسية" onclick="location.href=\'index.html\'"></button></div>
+<div class="banner-home-wrap"><img src="reading-banner.png" alt="شريط القراءة والاستماع"><a class="home-hotspot" href="index.html" aria-label="العودة إلى الرئيسية" title="الرئيسية"></a></div>
 <button class="hot" id="play" aria-label="تشغيل"></button>
 <button class="hot" id="pause" aria-label="إيقاف"></button>
 <button class="hot" id="restart" aria-label="إعادة"></button>

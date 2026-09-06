@@ -43,7 +43,7 @@ h2{text-align:center;margin:0 0 8px;font-size:30px}.hint{text-align:center;color
 .banner-home-wrap{position:relative;width:100%;display:block}
 .banner-home-wrap .home-hotspot{
 position:absolute;left:3.0%;top:9%;width:9.5%;height:25%;
-border:0;background:transparent;cursor:pointer;z-index:20;
+display:block;border:0;background:transparent;cursor:pointer;z-index:50;touch-action:manipulation;
 -webkit-tap-highlight-color:transparent;
 }
 .banner-home-wrap .home-hotspot:focus{outline:3px solid rgba(70,140,210,.35);outline-offset:2px;border-radius:50%}
@@ -52,7 +52,7 @@ border:0;background:transparent;cursor:pointer;z-index:20;
 </head>
 <body>
 <div class="wrap">
-<div class="banner-home-wrap"><img class="banner" src="language-skills-banner.png" alt="أنمّي لغتي والمهارات"><button class="home-hotspot" type="button" aria-label="العودة إلى الرئيسية" title="الرئيسية" onclick="location.href=\'index.html\'"></button></div>
+<div class="banner-home-wrap"><img class="banner" src="language-skills-banner.png" alt="أنمّي لغتي والمهارات"><a class="home-hotspot" href="index.html" aria-label="العودة إلى الرئيسية" title="الرئيسية"></a></div>
 <div class="nav">
 
 <button class="reset" onclick="location.reload()">↻ إعادة الأنشطة</button>
