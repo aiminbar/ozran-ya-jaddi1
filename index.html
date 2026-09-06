@@ -3,113 +3,154 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>أنمّي لغتي والمهارات | عُذْرًا يا جَدِّي</title>
+<title>تحدّي عُذْرًا يا جَدِّي</title>
 <style>
 *{box-sizing:border-box}
-:root{--navy:#294b6a;--pink:#f8dbe8;--lav:#e9def8;--mint:#dff4e8;--yellow:#fff1bf;--blue:#dceeff;--green:#318665;--red:#c65062}
-body{margin:0;background:linear-gradient(#fffafd,#f7fbff);font-family:Tahoma,Arial,sans-serif;color:var(--navy)}
-.wrap{max-width:1180px;margin:auto;padding:18px}
+:root{--navy:#294b6a;--purple:#6b4a8f;--pink:#ffe2ec;--mint:#e3f5e9;--yellow:#fff1bf;--blue:#e1f1ff;--good:#318665;--bad:#c65062}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--navy);background:linear-gradient(180deg,#fffafd,#f5fbff)}
+.wrap{max-width:1180px;margin:auto;padding:16px}
 .banner{width:100%;display:block;border-radius:28px;box-shadow:0 12px 30px #5d54721c}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0;flex-wrap:wrap}
-.home,.reset{border:0;border-radius:16px;padding:11px 18px;font-size:17px;cursor:pointer}
-.home{background:#e4f1ff;color:#315d84}.reset{background:#ffe3ec;color:#86485c}
-.stations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 22px}
-.station{border:0;border-radius:22px;padding:17px 10px;font-size:18px;font-weight:800;color:#3d5270;cursor:pointer;box-shadow:0 6px 18px #5b54731a}
-.station:nth-child(1){background:var(--pink)}.station:nth-child(2){background:var(--mint)}
-.station:nth-child(3){background:var(--yellow)}.station:nth-child(4){background:var(--lav)}
-.station.active{outline:4px solid white;box-shadow:0 0 0 3px #7c8fc5,0 8px 20px #5b547325}
-.panel{display:none;background:white;border-radius:28px;padding:25px;box-shadow:0 12px 30px #5d547218}
-.panel.active{display:block}
-h2{text-align:center;margin:0 0 8px;font-size:30px}.hint{text-align:center;color:#746e84;margin-bottom:22px}
-.activity{max-width:850px;margin:0 auto 18px;padding:20px;border:2px solid #eee6f3;border-radius:22px;background:#fff}
-.prompt{text-align:center;font-size:25px;font-weight:800;line-height:1.8;margin-bottom:14px}
-.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.choice{border:2px solid #e5ddef;background:#fff;border-radius:17px;padding:14px;font-size:21px;cursor:pointer;color:#334f6b}
-.choice.ok{background:#e4f6ec;border-color:#76bf99;color:#226b4c}.choice.bad{background:#fff0f2;border-color:#df98a4;color:#963c4a}
-.feedback{text-align:center;min-height:35px;font-size:19px;font-weight:800;margin-top:10px}
-.wordmap{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:800px;margin:auto}
-.mapcard{padding:17px;border-radius:18px;background:#f8f5fc;border:2px solid #e5dcef}
-.mapcard strong{display:block;margin-bottom:9px}
-.mapopts{display:flex;gap:8px;flex-wrap:wrap}.mapopts button{border:1px solid #d9cce8;background:#fff;border-radius:13px;padding:9px 12px;cursor:pointer;font-size:17px}
-.readline{font-size:27px;text-align:center;line-height:2.1;background:#fffaf0;border-radius:18px;padding:15px}
-.mark{color:#dc654e;font-weight:900}.syllables{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:15px}
-.syl{background:#e8f4ff;border:2px solid #b9daf5;border-radius:14px;padding:10px 17px;font-size:22px}
-.done{display:none;text-align:center;padding:25px;background:#f0fbf5;border-radius:24px;margin-top:18px}
-.done.show{display:block}.done b{font-size:28px;color:#318665}
-@media(max-width:760px){.stations{grid-template-columns:1fr 1fr}.choices,.wordmap{grid-template-columns:1fr}.prompt{font-size:21px}.wrap{padding:9px}}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:16px 0;flex-wrap:wrap}
+.home,.restart{border:0;border-radius:16px;padding:11px 18px;font-size:17px;cursor:pointer}
+.home{background:#e3f1ff;color:#315d84}.restart{background:#ffe5ed;color:#86485c}
+.progress{display:flex;justify-content:center;align-items:center;gap:9px;margin:10px 0 22px}
+.dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#e8e4ef;font-weight:bold}
+.dot.on{background:#ffd95f;color:#6d4d13;box-shadow:0 0 0 4px #fff3c5}.dot.done{background:#bfe8ce;color:#246c49}
+.line{height:5px;width:70px;background:#e6e0ed;border-radius:5px}
+.card{background:white;border-radius:28px;padding:25px;box-shadow:0 12px 30px #5d547218;margin-bottom:18px}
+.stage{display:none}.stage.active{display:block}
+h2{text-align:center;font-size:30px;margin:0 0 7px}.sub{text-align:center;color:#746e84;font-size:18px;margin-bottom:22px}
+.gamebox{max-width:850px;margin:auto;padding:20px;border-radius:22px;border:2px solid #eee6f3;background:#fff}
+.question{text-align:center;font-size:25px;font-weight:800;line-height:1.8;margin-bottom:17px}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.choice{min-height:72px;border:2px solid #dfd8eb;background:#fff;border-radius:18px;padding:13px;font-size:20px;color:#34516e;cursor:pointer;transition:.15s}
+.choice:hover{transform:translateY(-2px);box-shadow:0 6px 15px #594d6d15}
+.choice.good{background:#e4f6ec;border-color:#76bf99;color:#226b4c}.choice.bad{background:#fff0f2;border-color:#df98a4;color:#963c4a}
+.feedback{text-align:center;min-height:38px;font-weight:800;font-size:19px;margin-top:12px}
+.next{display:none;margin:15px auto 0;border:0;border-radius:17px;background:#7456a3;color:white;padding:12px 25px;font-size:18px;cursor:pointer}
+.next.show{display:block}
+.order{display:grid;gap:10px;max-width:760px;margin:auto}
+.event{display:flex;align-items:center;gap:12px;border:2px solid #e1d9eb;background:#fff;border-radius:17px;padding:13px}
+.event span{flex:1;font-size:19px}.event button{width:43px;height:39px;border:0;border-radius:11px;background:#edf4fb;cursor:pointer;font-size:19px}
+.check{display:block;margin:17px auto 0;border:0;border-radius:17px;background:#3f8b70;color:white;padding:12px 25px;font-size:18px;cursor:pointer}
+.situation{max-width:820px;margin:auto;background:#fffaf0;border:2px solid #f0dfb1;border-radius:22px;padding:20px}
+.finish{display:none;text-align:center;background:linear-gradient(135deg,#fff7cd,#ffe3ef,#e7f5ff);border-radius:30px;padding:35px 20px;box-shadow:0 12px 30px #5d547218}
+.finish.show{display:block}.trophy{font-size:75px}.finish h2{font-size:34px;color:#6b4a8f}.finish p{font-size:21px;line-height:1.8}
+@media(max-width:760px){.choices{grid-template-columns:1fr}.question{font-size:21px}.wrap{padding:8px}.line{width:30px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<img class="banner" src="language-skills-banner.png" alt="أنمّي لغتي والمهارات">
-<div class="nav">
-<button class="home" onclick="history.back()">⌂ الرئيسية</button>
-<button class="reset" onclick="location.reload()">↻ إعادة الأنشطة</button>
+<img src="challenge-banner.png" class="banner" alt="تحدّي عُذْرًا يا جَدِّي">
+<div class="top"><button class="home" onclick="history.back()">⌂ الرئيسية</button><button class="restart" onclick="location.reload()">↻ إعادة التحدّي</button></div>
+
+<div class="progress">
+<div class="dot on" id="d1">١</div><div class="line"></div>
+<div class="dot" id="d2">٢</div><div class="line"></div>
+<div class="dot" id="d3">٣</div>
 </div>
 
-<div class="stations">
-<button class="station active" onclick="showPanel(0)">١. معنى الكلمة</button>
-<button class="station" onclick="showPanel(1)">٢. الكلمة وضدها</button>
-<button class="station" onclick="showPanel(2)">٣. خريطة «غَضِبَ»</button>
-<button class="station" onclick="showPanel(3)">٤. الأداء القرائي</button>
+<section class="card stage active" id="stage1">
+<h2>المرحلة الأولى: التقط الإجابة 🎯</h2>
+<div class="sub">اختاري الإجابة المناسبة، ثم انتقلي إلى البطاقة التالية.</div>
+<div class="gamebox">
+<div class="question" id="q1"></div>
+<div class="choices" id="c1"></div>
+<div class="feedback" id="f1"></div>
+<button class="next" id="n1" onclick="nextCatch()">التالي ←</button>
 </div>
-
-<section class="panel active">
-<h2>معنى الكلمة</h2><div class="hint">اختاري المعنى الصحيح للكلمة الملوّنة.</div>
-<div class="activity"><div class="prompt">إِنَّ الْجَدَّ <span class="mark">عَطُوفٌ</span> حَنُونٌ.</div>
-<div class="choices"><button class="choice" onclick="answer(this,true)">رَحِيمٌ</button><button class="choice" onclick="answer(this,false)">شَدِيدٌ</button></div><div class="feedback"></div></div>
-<div class="activity"><div class="prompt">عَلَيْكَ أَنْ <span class="mark">تَعْتَذِرَ</span> إِلَى جَدِّكَ.</div>
-<div class="choices"><button class="choice" onclick="answer(this,false)">تَطْلُبَ الشُّكْرَ</button><button class="choice" onclick="answer(this,true)">تَطْلُبَ السَّمَاحَ</button></div><div class="feedback"></div></div>
 </section>
 
-<section class="panel">
-<h2>الكلمة وضدها</h2><div class="hint">اختاري الضد الصحيح.</div>
-<div class="activity"><div class="prompt">ضد كلمة «طَاعَة»</div>
-<div class="choices"><button class="choice" onclick="answer(this,true)">امْتِنَاع</button><button class="choice" onclick="answer(this,false)">مُوَافَقَة</button></div><div class="feedback"></div></div>
-<div class="activity"><div class="prompt">ضد كلمة «صَحِبَ»</div>
-<div class="choices"><button class="choice" onclick="answer(this,false)">رَافَقَ</button><button class="choice" onclick="answer(this,true)">تَرَكَ</button></div><div class="feedback"></div></div>
+<section class="card stage" id="stage2">
+<h2>المرحلة الثانية: رتّبي أحداث القصة 🧩</h2>
+<div class="sub">حرّكي الأحداث إلى أعلى أو أسفل حتى تصبح بالترتيب الصحيح.</div>
+<div class="order" id="order"></div>
+<div class="feedback" id="f2"></div>
+<button class="check" onclick="checkOrder()">تحقّق من الترتيب</button>
 </section>
 
-<section class="panel">
-<h2>خريطة المفردة: غَضِبَ</h2><div class="hint">أكملي خريطة المفردة باختيار الإجابة المناسبة.</div>
-<div class="wordmap">
-<div class="mapcard"><strong>ضِدُّها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">رَضِيَ</button><button onclick="mapAnswer(this,false)">حَزِنَ</button></div></div>
-<div class="mapcard"><strong>نَوْعُها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">فِعْلٌ</button><button onclick="mapAnswer(this,false)">اسْمٌ</button></div></div>
-<div class="mapcard"><strong>مُرادِفُها:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">سَخِطَ</button><button onclick="mapAnswer(this,false)">فَرِحَ</button></div></div>
-<div class="mapcard"><strong>في جملة:</strong><div class="mapopts"><button onclick="mapAnswer(this,true)">غَضِبَ جَدِّي مِنَ الصَّوْتِ الْمُرْتَفِعِ.</button><button onclick="mapAnswer(this,false)">غَضِبَ الْكِتَابُ.</button></div></div>
+<section class="card stage" id="stage3">
+<h2>المرحلة الثالثة: ماذا يفعل فواز؟ 💡</h2>
+<div class="sub">اختاري التصرّف الصحيح في الموقف.</div>
+<div class="situation">
+<div class="question">طلب الجد من فواز أن يُخفِّض صوت التلفاز، وفواز يتابع برنامجه المفضّل. ماذا يفعل؟</div>
+<div class="choices">
+<button class="choice" onclick="situation(this,false)">يتجاهل طلب جدّه ويواصل المشاهدة.</button>
+<button class="choice" onclick="situation(this,true)">يُخفِّض الصوت ويطيع جدّه.</button>
+<button class="choice" onclick="situation(this,false)">يرفع صوت التلفاز أكثر.</button>
 </div>
-<div class="feedback" id="mapfb"></div>
+<div class="feedback" id="f3"></div>
+</div>
 </section>
 
-<section class="panel">
-<h2>الأداء القرائي</h2><div class="hint">اقرئي ولاحظي الكلمات الملوّنة، ثم شاهدي تحليل الكلمات.</div>
-<div class="activity">
-<div class="readline">إِنَّ الْجَدَّ <span class="mark">عَطُوفٌ</span> حَنُونٌ.<br>عَلَيْكَ أَنْ <span class="mark">تَعْتَذِرَ</span> إِلَى جَدِّكَ.</div>
-</div>
-<div class="activity"><div class="prompt">تحليل كلمة «الْمَدْرَسَةِ»</div><div class="syllables"><span class="syl">الْـ</span><span class="syl">مَدْ</span><span class="syl">رَ</span><span class="syl">سَـ</span><span class="syl">ةِ</span></div></div>
-<div class="activity"><div class="prompt">تحليل كلمة «مَكْتَبَةٍ»</div><div class="syllables"><span class="syl">مَكْ</span><span class="syl">تَـ</span><span class="syl">بَـ</span><span class="syl">ةٍ</span></div></div>
-<div class="done show"><b>أحسنتِ 🌷</b><br>أكملتِ محطات أنمّي لغتي والمهارات.</div>
+<section class="finish" id="finish">
+<div class="trophy">🏆</div>
+<h2>بطلة تحدّي «عُذْرًا يا جَدِّي»</h2>
+<p>أحسنتِ! أتممتِ مراحل التحدّي بنجاح 👏<br>تذكّري: أطيعُ جدّي، وأعتذرُ عندما أخطئ.</p>
+<button class="restart" onclick="location.reload()">إعادة التحدّي</button>
 </section>
-</div>
 
 <audio id="cheer" src="kids-cheering.mp3" preload="auto"></audio>
-<audio id="wrongSound" src="wrong.wav" preload="auto"></audio>
+<audio id="wrong" src="wrong.wav" preload="auto"></audio>
 <script>
-function cheer(){const a=document.getElementById('cheer');a.currentTime=0;a.play().catch(()=>{})}
-function wrongSound(){const a=document.getElementById('wrongSound');a.currentTime=0;a.play().catch(()=>{})}
-function showPanel(n){
- document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
- document.querySelectorAll('.station').forEach((b,i)=>b.classList.toggle('active',i===n));
- window.scrollTo({top:document.querySelector('.stations').offsetTop-10,behavior:'smooth'});
+const catchQs=[
+ {q:'ما معنى كلمة «عَطُوفٌ»؟',o:['رَحِيمٌ','شَدِيدٌ','غَاضِبٌ'],a:0},
+ {q:'ما ضد كلمة «طَاعَة»؟',o:['مُوَافَقَة','امْتِنَاع','رَحْمَة'],a:1},
+ {q:'لماذا غضب الجد من فواز؟',o:['لأن فواز لم يُخفِّض صوت التلفاز','لأن فواز ذهب إلى المكتبة','لأن فواز اعتذر إليه'],a:0}
+];
+let qi=0;
+function sound(id){let a=document.getElementById(id);a.currentTime=0;a.play().catch(()=>{})}
+function renderCatch(){
+ let x=catchQs[qi]; document.getElementById('q1').textContent=x.q;
+ let c=document.getElementById('c1'); c.innerHTML='';
+ x.o.forEach((t,i)=>{let b=document.createElement('button');b.className='choice';b.textContent=t;b.onclick=()=>catchAnswer(b,i===x.a);c.appendChild(b)});
+ document.getElementById('f1').textContent='';document.getElementById('n1').classList.remove('show');
 }
-function answer(btn,ok){
- const box=btn.closest('.activity'), fb=box.querySelector('.feedback');
- if(ok){btn.classList.add('ok');box.querySelectorAll('.choice').forEach(x=>x.disabled=true);fb.textContent='أحسنتِ! إجابة صحيحة 👏';fb.style.color='#318665';cheer();}
- else{btn.classList.add('bad');btn.disabled=true;fb.textContent='حاولي مرة أخرى 🌷';fb.style.color='#c65062';wrongSound();}
+function catchAnswer(b,ok){
+ let f=document.getElementById('f1');
+ if(ok){b.classList.add('good');document.querySelectorAll('#c1 .choice').forEach(x=>x.disabled=true);f.textContent='أحسنتِ! إجابة صحيحة 👏';f.style.color='#318665';sound('cheer');document.getElementById('n1').classList.add('show')}
+ else{b.classList.add('bad');b.disabled=true;f.textContent='حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}
 }
-function mapAnswer(btn,ok){
- if(ok){btn.style.background='#e4f6ec';btn.style.borderColor='#76bf99';btn.disabled=true;document.getElementById('mapfb').textContent='أحسنتِ 👏';document.getElementById('mapfb').style.color='#318665';cheer();}
- else{btn.style.background='#fff0f2';btn.disabled=true;document.getElementById('mapfb').textContent='حاولي مرة أخرى 🌷';document.getElementById('mapfb').style.color='#c65062';wrongSound();}
+function nextCatch(){qi++; if(qi<catchQs.length)renderCatch();else go(2)}
+const correct=[
+ 'صَحِبَ الْمُعَلِّمُ التَّلَامِيذَ إِلَى مَكْتَبَةِ الْمَدْرَسَةِ.',
+ 'رَأَى الْمُعَلِّمُ فَوَّازًا يَجْلِسُ حَزِينًا.',
+ 'أَخْبَرَ فَوَّازٌ مُعَلِّمَهُ أَنَّهُ لَمْ يُخَفِّضْ صَوْتَ التِّلْفَازِ لِجَدِّهِ.',
+ 'نَصَحَ الْمُعَلِّمُ فَوَّازًا أَنْ يَعْتَذِرَ إِلَى جَدِّهِ وَيَطْلُبَ السَّمَاحَ.'
+];
+let arr=[correct[2],correct[0],correct[3],correct[1]];
+function drawOrder(){
+ let o=document.getElementById('order');o.innerHTML='';
+ arr.forEach((t,i)=>{
+  let d=document.createElement('div');d.className='event';
+  d.innerHTML='<span>'+t+'</span><button aria-label="أعلى">↑</button><button aria-label="أسفل">↓</button>';
+  d.children[1].onclick=()=>move(i,-1);d.children[2].onclick=()=>move(i,1);o.appendChild(d)
+ })
 }
+function move(i,dir){let j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];drawOrder()}
+function checkOrder(){
+ let ok=arr.every((x,i)=>x===correct[i]),f=document.getElementById('f2');
+ if(ok){f.textContent='رائع! رتبتِ أحداث القصة ترتيبًا صحيحًا 👏';f.style.color='#318665';sound('cheer');setTimeout(()=>go(3),900)}
+ else{f.textContent='الترتيب يحتاج تعديلًا، حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}
+}
+function situation(b,ok){
+ let f=document.getElementById('f3');
+ if(ok){b.classList.add('good');document.querySelectorAll('#stage3 .choice').forEach(x=>x.disabled=true);f.textContent='أحسنتِ! هذا هو التصرّف الصحيح 👏';f.style.color='#318665';sound('cheer');setTimeout(finish,1000)}
+ else{b.classList.add('bad');b.disabled=true;f.textContent='حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}
+}
+function go(n){
+ document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));
+ document.getElementById('stage'+n).classList.add('active');
+ for(let i=1;i<=3;i++){let d=document.getElementById('d'+i);d.className='dot '+(i<n?'done':i===n?'on':'')}
+ window.scrollTo({top:document.querySelector('.progress').offsetTop-10,behavior:'smooth'})
+}
+function finish(){
+ document.getElementById('stage3').classList.remove('active');
+ document.querySelector('.progress').style.display='none';
+ document.getElementById('finish').classList.add('show');sound('cheer');
+ window.scrollTo({top:document.getElementById('finish').offsetTop-20,behavior:'smooth'})
+}
+renderCatch();drawOrder();
 </script>
+</div>
 </body></html>
