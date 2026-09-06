@@ -99,7 +99,17 @@ const catchQs=[
  {q:'لماذا غضب الجد من فواز؟',o:['لأن فواز لم يُخفِّض صوت التلفاز','لأن فواز ذهب إلى المكتبة','لأن فواز اعتذر إليه'],a:0}
 ];
 let qi=0;
-function sound(id){let a=document.getElementById(id);a.currentTime=0;a.play().catch(()=>{})}
+function sound(id){
+ const a=document.getElementById(id);
+ a.pause();
+ a.currentTime=0;
+ const promise=a.play();
+ if(promise) promise.catch(()=>{});
+}
+function cheerThen(callback, delay=1500){
+ sound('cheer');
+ if(callback) setTimeout(callback,delay);
+}
 function renderCatch(){
  let x=catchQs[qi]; document.getElementById('q1').textContent=x.q;
  let c=document.getElementById('c1'); c.innerHTML='';
@@ -130,12 +140,12 @@ function drawOrder(){
 function move(i,dir){let j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];drawOrder()}
 function checkOrder(){
  let ok=arr.every((x,i)=>x===correct[i]),f=document.getElementById('f2');
- if(ok){f.textContent='رائع! رتبتِ أحداث القصة ترتيبًا صحيحًا 👏';f.style.color='#318665';sound('cheer');setTimeout(()=>go(3),900)}
+ if(ok){f.textContent='رائع! رتبتِ أحداث القصة ترتيبًا صحيحًا 👏';f.style.color='#318665';cheerThen(()=>go(3),1800)}
  else{f.textContent='الترتيب يحتاج تعديلًا، حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}
 }
 function situation(b,ok){
  let f=document.getElementById('f3');
- if(ok){b.classList.add('good');document.querySelectorAll('#stage3 .choice').forEach(x=>x.disabled=true);f.textContent='أحسنتِ! هذا هو التصرّف الصحيح 👏';f.style.color='#318665';sound('cheer');setTimeout(finish,1000)}
+ if(ok){b.classList.add('good');document.querySelectorAll('#stage3 .choice').forEach(x=>x.disabled=true);f.textContent='أحسنتِ! هذا هو التصرّف الصحيح 👏';f.style.color='#318665';cheerThen(finish,1800)}
  else{b.classList.add('bad');b.disabled=true;f.textContent='حاولي مرة أخرى 🌷';f.style.color='#c65062';sound('wrong')}
 }
 function go(n){
@@ -147,7 +157,7 @@ function go(n){
 function finish(){
  document.getElementById('stage3').classList.remove('active');
  document.querySelector('.progress').style.display='none';
- document.getElementById('finish').classList.add('show');sound('cheer');
+ document.getElementById('finish').classList.add('show');setTimeout(()=>sound('cheer'),250);
  window.scrollTo({top:document.getElementById('finish').offsetTop-20,behavior:'smooth'})
 }
 renderCatch();drawOrder();
