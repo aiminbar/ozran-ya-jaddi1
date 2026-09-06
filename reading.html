@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عُذْرًا يا جَدِّي | القراءة والاستماع</title>
+<style>
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#f8f3ff,#fffaf5);font-family:Tahoma,"Arial",sans-serif;color:#263755}
+.page{max-width:1500px;margin:auto;padding:18px 28px 40px}
+.banner{position:relative;width:100%;aspect-ratio:2164/727;margin:auto}
+.banner img{width:100%;height:100%;object-fit:contain;display:block}
+.hot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:50%;padding:0;-webkit-tap-highlight-color:transparent}
+.hot:focus-visible{outline:4px solid rgba(38,125,255,.55);outline-offset:3px}
+/* Positions measured against the approved 2048x768 banner */
+#play{left:52.4%;top:42.0%;width:8.4%;height:25.5%}
+#pause{left:61.1%;top:42.0%;width:8.4%;height:25.5%}
+#restart{left:69.7%;top:42.0%;width:8.4%;height:25.5%}
+.lesson{max-width:1180px;margin:-22px auto 0;background:rgba(255,255,255,.96);border:1px solid #eadff5;border-radius:28px;padding:26px 34px;box-shadow:0 16px 42px rgba(72,52,100,.10)}
+.text{font-size:29px;line-height:2.05;text-align:right}
+.text p{margin:5px 0 12px}
+.word{display:inline;padding:2px 4px 4px;border-radius:7px;border-bottom:3px solid transparent;box-decoration-break:clone;-webkit-box-decoration-break:clone;transition:background .06s,border-color .06s,color .06s}
+.word.active{background:rgba(229,63,78,.12);border-bottom-color:#df4050;color:#8c2430}
+.home{position:fixed;left:18px;bottom:18px;border:0;border-radius:18px;padding:12px 18px;background:#fff;box-shadow:0 6px 20px #0002;color:#57456f;font-weight:700;cursor:pointer}
+@media(max-width:800px){.page{padding:8px 10px 30px}.lesson{margin:-8px auto 0;padding:18px 16px;border-radius:20px}.text{font-size:21px;line-height:2}}
+</style>
+<style>
+.banner-home-wrap{position:relative;width:100%;display:block}
+.banner-home-wrap .home-hotspot{
+position:absolute;left:3.0%;top:9%;width:9.5%;height:25%;
+border:0;background:transparent;cursor:pointer;z-index:20;
+-webkit-tap-highlight-color:transparent;
+}
+.banner-home-wrap .home-hotspot:focus{outline:3px solid rgba(70,140,210,.35);outline-offset:2px;border-radius:50%}
+</style>
+
+</head><body>
+<div class="page">
+<div class="banner">
+<div class="banner-home-wrap"><img src="reading-banner.png" alt="شريط القراءة والاستماع"><button class="home-hotspot" type="button" aria-label="العودة إلى الرئيسية" title="الرئيسية" onclick="location.href=\'index.html\'"></button></div>
+<button class="hot" id="play" aria-label="تشغيل"></button>
+<button class="hot" id="pause" aria-label="إيقاف"></button>
+<button class="hot" id="restart" aria-label="إعادة"></button>
+</div>
+<section class="lesson"><div class="text" id="text"><p><span class="word" data-i="0">فِي</span> <span class="word" data-i="1">حِصَّةِ</span> <span class="word" data-i="2">الْقِرَاءَةِ،</span> <span class="word" data-i="3">صَحِبَ</span> <span class="word" data-i="4">الْمُعَلِّمُ</span> <span class="word" data-i="5">التَّلَامِيذَ</span> <span class="word" data-i="6">إِلَى</span> <span class="word" data-i="7">مَكْتَبَةِ</span> <span class="word" data-i="8">الْمَدْرَسَةِ؛</span> <span class="word" data-i="9">لِلْقِرَاءَةِ</span> <span class="word" data-i="10">وَالِاطِّلَاعِ.</span></p><p><span class="word" data-i="11">رَأَى</span> <span class="word" data-i="12">الْمُعَلِّمُ</span> <span class="word" data-i="13">فَوَّازًا</span> <span class="word" data-i="14">يَجْلِسُ</span> <span class="word" data-i="15">حَزِينًا.</span></p><p><span class="word" data-i="16">الْمُعَلِّمُ:</span> <span class="word" data-i="17">هَلْ</span> <span class="word" data-i="18">تَشْكُو</span> <span class="word" data-i="19">مِنْ</span> <span class="word" data-i="20">شَيْءٍ</span> <span class="word" data-i="21">يَا</span> <span class="word" data-i="22">بُنَيَّ؟</span></p><p><span class="word" data-i="23">فَوَّازٌ:</span> <span class="word" data-i="24">لَا،</span> <span class="word" data-i="25">وَلَكِنِّي</span> <span class="word" data-i="26">نَادِمٌ</span> <span class="word" data-i="27">عَلَى</span> <span class="word" data-i="28">مَا</span> <span class="word" data-i="29">فَعَلْتُهُ</span> <span class="word" data-i="30">أَمْسِ.</span></p><p><span class="word" data-i="31">الْمُعَلِّمُ:</span> <span class="word" data-i="32">وَمَاذَا</span> <span class="word" data-i="33">فَعَلْتَ</span> <span class="word" data-i="34">يَا</span> <span class="word" data-i="35">بُنَيَّ؟</span> <span class="word" data-i="36">فَوَّازٌ:</span></p><p><span class="word" data-i="37">لَقَدْ</span> <span class="word" data-i="38">طَلَبَ</span> <span class="word" data-i="39">مِنِّي</span> <span class="word" data-i="40">جَدِّي</span> <span class="word" data-i="41">أَنْ</span> <span class="word" data-i="42">أُخَفِّضَ</span> <span class="word" data-i="43">صَوْتَ</span> <span class="word" data-i="44">التِّلْفَازِ</span> <span class="word" data-i="45">فَلَمْ</span> <span class="word" data-i="46">أَفْعَلْ؛</span> <span class="word" data-i="47">لِانْشِغَالِي</span> <span class="word" data-i="48">بِمُتَابَعَةِ</span> <span class="word" data-i="49">بَرْنَامَجِي</span> <span class="word" data-i="50">الْمُفَضَّلِ،</span> <span class="word" data-i="51">فَغَضِبَ</span> <span class="word" data-i="52">مِنِّي.</span> <span class="word" data-i="53">الْمُعَلِّمُ:</span></p><p><span class="word" data-i="54">لَقَدْ</span> <span class="word" data-i="55">أَخْطَأْتَ</span> <span class="word" data-i="56">يَا</span> <span class="word" data-i="57">فَوَّازُ،</span> <span class="word" data-i="58">وَعَلَيْكَ</span> <span class="word" data-i="59">أَنْ</span> <span class="word" data-i="60">تَعْتَذِرَ</span> <span class="word" data-i="61">إِلَى</span> <span class="word" data-i="62">جَدِّكَ،</span> <span class="word" data-i="63">وَتَطْلُبَ</span> <span class="word" data-i="64">السَّمَاحَ</span> <span class="word" data-i="65">مِنْهُ.</span> <span class="word" data-i="66">فَوَّازٌ:</span> <span class="word" data-i="67">لَيْتَ</span></p><p><span class="word" data-i="68">جَدِّي</span> <span class="word" data-i="69">يُسَامِحُنِي!</span> <span class="word" data-i="70">الْمُعَلِّمُ:</span> <span class="word" data-i="71">إِنَّ</span></p><p><span class="word" data-i="72">الْجَدَّ</span> <span class="word" data-i="73">عَطُوفٌ</span> <span class="word" data-i="74">حَنُونٌ،</span> <span class="word" data-i="75">وَسَيُسَامِحُكَ</span> <span class="word" data-i="76">إِنْ</span> <span class="word" data-i="77">شَاءَ</span> <span class="word" data-i="78">اللَّهُ،</span> <span class="word" data-i="79">وَلَكِنِ</span> <span class="word" data-i="80">احْرِصْ</span> <span class="word" data-i="81">يَا</span> <span class="word" data-i="82">بُنَيَّ</span> <span class="word" data-i="83">عَلَى</span> <span class="word" data-i="84">طَاعَةِ</span> <span class="word" data-i="85">جَدِّكَ.</span></p></div></section>
+<audio id="audio" preload="metadata" src="reading-audio-12.mp3"></audio>
+
+</div>
+<script>
+const starts=[0, 1.358928383000729, 2.2265765713334558, 4.043394602999437, 5.155453405332761, 6.625051970999362, 8.34190260533306, 9.254253901998661, 10.369935999667502, 12.585255683332743, 14.301269089000096, 16.864880762332334, 18.03370745333225, 19.34574132566587, 20.612721498667025, 22.126641298334658, 24.942495820667094, 26.858240509332866, 28.324920777666414, 29.137982724332698, 29.45580535600131, 30.37802273899999, 30.74333277333288, 32.86073651799982, 34.57709907133391, 37.048157792665705, 38.565915909000076, 39.683644953000005, 40.19854219966629, 40.51557990866771, 41.78235138266591, 44.24866373499998, 46.468367236667476, 47.9850654813337, 48.701512131999756, 49.01878252433259, 51.331977454664965, 53.10168286999983, 54.471113622666735, 55.138213191001064, 55.75262336066637, 56.671540766333706, 57.588251671334376, 58.70316330933388, 59.2198784889996, 60.53815655599992, 61.95659511833431, 63.42190574433259, 64.83871623299905, 66.25984122966729, 67.4281036613338, 68.84306617866491, 70.35801942699956, 71.57569853633247, 73.29590600766706, 74.6615172920004, 75.57716744333268, 75.79260537933261, 77.00909290466662, 78.57499381966718, 78.8434157906671, 79.85983429266565, 80.2759357456657, 81.19291396033269, 82.61290997333377, 83.52873759666721, 85.14465537699964, 86.86064799833304, 88.17939127333435, 88.84481976700123, 91.2625891276661, 92.72821044933339, 94.09721456500004, 94.71201079633344, 95.17876046000066, 97.44594126699917, 98.86387741366715, 99.13026505933338, 99.54561755466794, 100.56372666733336, 102.03065460333254, 102.94657628733276, 103.26915713399843, 104.1865114140016, 105.10298443433335, 105.81877142700068];
+const audio=document.getElementById('audio'), nodes=[...document.querySelectorAll('.word')];
+let active=-1, raf=0;
+function locate(t){let lo=0,hi=starts.length-1,ans=-1;while(lo<=hi){const m=(lo+hi)>>1;if(starts[m]<=t){ans=m;lo=m+1}else hi=m-1}return ans}
+function setActive(i){if(i===active)return;if(active>=0)nodes[active].classList.remove('active');active=i;if(i>=0){nodes[i].classList.add('active');nodes[i].scrollIntoView({block:'nearest',behavior:'smooth'})}}
+function sync(){setActive(locate(audio.currentTime));if(!audio.paused&&!audio.ended)raf=requestAnimationFrame(sync)}
+document.getElementById('play').onclick=()=>audio.play();
+document.getElementById('pause').onclick=()=>audio.pause();
+document.getElementById('restart').onclick=()=>{audio.currentTime=0;audio.play()};
+audio.addEventListener('play',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(sync)});
+audio.addEventListener('pause',sync);audio.addEventListener('seeked',sync);audio.addEventListener('timeupdate',sync);audio.addEventListener('ended',()=>setActive(-1));
+nodes.forEach((n,i)=>n.onclick=()=>{audio.currentTime=starts[i];audio.play()});
+</script></body></html>
