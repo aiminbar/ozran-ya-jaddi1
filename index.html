@@ -93,8 +93,10 @@ h2{text-align:center;margin:0 0 8px;font-size:30px}.hint{text-align:center;color
 </div>
 
 <audio id="cheer" src="kids-cheering.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="wrong.wav" preload="auto"></audio>
 <script>
 function cheer(){const a=document.getElementById('cheer');a.currentTime=0;a.play().catch(()=>{})}
+function wrongSound(){const a=document.getElementById('wrongSound');a.currentTime=0;a.play().catch(()=>{})}
 function showPanel(n){
  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
  document.querySelectorAll('.station').forEach((b,i)=>b.classList.toggle('active',i===n));
@@ -103,11 +105,11 @@ function showPanel(n){
 function answer(btn,ok){
  const box=btn.closest('.activity'), fb=box.querySelector('.feedback');
  if(ok){btn.classList.add('ok');box.querySelectorAll('.choice').forEach(x=>x.disabled=true);fb.textContent='أحسنتِ! إجابة صحيحة 👏';fb.style.color='#318665';cheer();}
- else{btn.classList.add('bad');btn.disabled=true;fb.textContent='حاولي مرة أخرى 🌷';fb.style.color='#c65062';}
+ else{btn.classList.add('bad');btn.disabled=true;fb.textContent='حاولي مرة أخرى 🌷';fb.style.color='#c65062';wrongSound();}
 }
 function mapAnswer(btn,ok){
  if(ok){btn.style.background='#e4f6ec';btn.style.borderColor='#76bf99';btn.disabled=true;document.getElementById('mapfb').textContent='أحسنتِ 👏';document.getElementById('mapfb').style.color='#318665';cheer();}
- else{btn.style.background='#fff0f2';btn.disabled=true;document.getElementById('mapfb').textContent='حاولي مرة أخرى 🌷';document.getElementById('mapfb').style.color='#c65062';}
+ else{btn.style.background='#fff0f2';btn.disabled=true;document.getElementById('mapfb').textContent='حاولي مرة أخرى 🌷';document.getElementById('mapfb').style.color='#c65062';wrongSound();}
 }
 </script>
 </body></html>
